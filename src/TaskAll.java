@@ -3,15 +3,18 @@ import java.util.Random;
 
 public class TaskAll {
     public static void main(String[] args) {
+        double number = 28.13534745736483d;
+
         int[] massiveOne = new int[100];
         int[][] massiveDouble = new int[5][3];
+
 
         String[] stringArray = new String[]{"Jon", "Jonatan", "Jonny", "Jerad", "Lajonio", "Junior"};
         String[] stringArray2 = new String[]{"утка", "утканос", "лодка", "лопатка", "гутка", "хрютка", "закрутка"};
         String[] stringArray3 = new String[]{"Jon", "Jon", "Jon", "Jon", "Jon", "Jon"};
 
-        char[] chars = new char[]{'j','c','o','n','r','t','i','j','o','n'};
-        char[] chars2 = new char[]{'j','o','n'};
+        char[] chars = new char[]{'j', 'c', 'o', 'n', 'r', 't', 'i', 'j', 'o', 'n'};
+        char[] chars2 = new char[]{'j', 'o', 'n'};
 
         Random random = new Random();
 
@@ -28,6 +31,8 @@ public class TaskAll {
 
         //-----------------------------test methodes-----------------------
 //        System.out.println(isYearIsBig(2024));
+
+        print(number);
         System.out.println(Arrays.toString(stringArray));
         System.out.println(Arrays.toString(filterByStringPart(stringArray, "Jon")));
         System.out.println(Arrays.toString(filterByStringPart(stringArray2, "утка")));
@@ -41,7 +46,7 @@ public class TaskAll {
 //        System.out.println(Arrays.toString(convert(new int[][]{{65, 66, 68}, {72, 70, 75},})));
 //        print((convert(new int[][]{{65, 66, 68}, {72, 70, 75}})));
 //        System.out.println(Arrays.deepToString(intToChar(massiveDouble)));
-        System.out.println(contains(chars,chars2));
+        System.out.println(contains(chars, chars2));
 
 
     }
@@ -122,6 +127,7 @@ public class TaskAll {
         }
         return false;
     }
+
     //task10
     public static int indexOf(int[] array, int value) {
         for (int i = 0; i < array.length; i++) {
@@ -164,12 +170,12 @@ public class TaskAll {
         int count = 0;
         int filled = 0;
         for (int i = 0; i < strings.length; i++) {
-            if (strings[i].indexOf(text)!=-1) count++;
+            if (strings[i].indexOf(text) != -1) count++;
         }
         String[] sorted = new String[count];
 
         for (int i = 0; i < strings.length; i++) {
-            if (strings[i].indexOf(text)!=-1) {
+            if (strings[i].indexOf(text) != -1) {
                 sorted[filled] = strings[i];
                 filled++;
             }
@@ -184,6 +190,11 @@ public class TaskAll {
                 System.out.println(array[i]);
             }
         }
+    }
+
+    //task16
+    public static void print(double number) {
+        System.out.printf("%.3f", number);
     }
 
     //task17

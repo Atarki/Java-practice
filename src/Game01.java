@@ -13,6 +13,7 @@ public class Game01 {
             } else System.out.println("Bigger");
             if (number == keyboard) {
                 System.out.println("Known !!!");
+                break;
             }
         }
     }
