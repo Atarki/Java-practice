@@ -34,13 +34,13 @@ public class TaskAll {
 
         print(number);
         System.out.println(Arrays.toString(stringArray));
-        System.out.println(Arrays.toString(filterByStringPart(stringArray, "Jon")));
-        System.out.println(Arrays.toString(filterByStringPart(stringArray2, "утка")));
-        System.out.println(Arrays.toString(filterByStringPart(stringArray3, "Jon")));
+        System.out.println(Arrays.toString(contains(stringArray, "Jon")));
+        System.out.println(Arrays.toString(contains(stringArray2, "утка")));
+        System.out.println(Arrays.toString(contains(stringArray3, "Jon")));
 //        System.out.println(isDuplicates(new byte[]{22, 23, 21, 2, 22}));
 
 //        System.out.println(Arrays.toString(massiveOne));
-//        System.out.println(Arrays.toString(sortByBoolean(massiveOne, true)));
+//        System.out.println(Arrays.toString(sort(massiveOne, true)));
 //        invert(massiveDouble);
 
 //        System.out.println(Arrays.toString(convert(new int[][]{{65, 66, 68}, {72, 70, 75},})));
@@ -166,7 +166,7 @@ public class TaskAll {
     }
 
     //task14
-    public static String[] filterByStringPart(String[] strings, String text) {
+    public static String[] contains(String[] strings, String text) {
         int count = 0;
         int filled = 0;
         for (int i = 0; i < strings.length; i++) {
@@ -212,7 +212,7 @@ public class TaskAll {
     }
 
     //task18
-    public static int[] sortFromEnd(int[] array) {
+    public static int[] sortDecrease(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1; j++) {
                 if (array[j] < array[j + 1]) {
@@ -226,8 +226,8 @@ public class TaskAll {
     }
 
     //task19
-    public static int[] sortByBoolean(int[] array, boolean b) {
-        return b ? sortFromEnd(array) : sort(array);
+    public static int[] sort(int[] array, boolean b) {
+        return b ? sortDecrease(array) : sort(array);
     }
 
     //task20
