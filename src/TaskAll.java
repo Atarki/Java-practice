@@ -121,8 +121,8 @@ public class TaskAll {
     //task09
     public static boolean contains(char[] array, char[] charsToFind) {
         String stringOriginal = new String(array);
-        String stringTofind = new String(charsToFind);
-        if (stringOriginal.indexOf(stringTofind) != -1) {
+        String find = new String(charsToFind);
+        if (stringOriginal.indexOf(find) != -1) {
             return true;
         }
         return false;
@@ -159,10 +159,7 @@ public class TaskAll {
 
     //task13
     public static boolean isYearIsBig(int yearNumber) {
-        if (yearNumber % 400 == 0 || yearNumber % 4 == 0) {
-            return true;
-        }
-        return false;
+        return yearNumber % 400 == 0 || yearNumber % 4 == 0 || yearNumber % 100 != 0;
     }
 
     //task14

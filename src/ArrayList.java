@@ -35,7 +35,7 @@ public class ArrayList<E> {
         list.add(77, 3);
         System.out.println("-------------------------");
         for (int i = 0; i < list.size(); i++) {
-             System.out.println(list.get(i));
+            System.out.println(list.get(i));
         }
         System.out.println("------------------------------");
 
@@ -49,8 +49,8 @@ public class ArrayList<E> {
 //        list.clear();
 //        System.out.println("List is empty:" + list.isEmpty());
 
-//        System.out.println(list.get(100));
-//        list.set(100, 100);
+        System.out.println(list.get(100));
+        list.set(100, 100);
         list.add(15, 12);
         System.out.println(list.toString());
 
@@ -87,9 +87,9 @@ public class ArrayList<E> {
 
     public void add(Object object, int index) throws Exception {
         validate(index);
-        if (index > size) array = Arrays.copyOf(array, index + 1);
+        if (size == array.length) array = Arrays.copyOf(array, (array.length) * 2);
         Object tmp3 = null;
-        for (int i = index; i < array.length - index; i++) {
+        for (int i = index; i < size - index; i++) {
             if (tmp3 != null) {
                 array[i] = tmp3;
             }
@@ -100,7 +100,6 @@ public class ArrayList<E> {
         }
         array[index] = object;
         size++;
-        //if outOfbound
     }
 
     public void remove(Object object) {
@@ -172,7 +171,7 @@ public class ArrayList<E> {
 
     private void validate(int index) throws Exception {
         if (index < 0 || index > array.length) {
-            throw new Exception("My IndexOfBound Exception");
+            throw new Exception("My IndexOfBound Exception" + " Index: " + index + " Size: " + array.length);
         }
     }
 }
