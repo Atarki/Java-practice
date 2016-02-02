@@ -94,7 +94,7 @@ public class ArrayList<E> {
     }
 
     public void add(Object object, int index) throws Exception {
-        validate(index);
+        validateAdd(index);
         if (size == array.length) {
             Object[] array2 = new Object[(array.length) * 2];
             System.arraycopy(array, 0, array2, 0, size);
@@ -167,20 +167,20 @@ public class ArrayList<E> {
         return false;
     }
 
-    private void validate(int index) {
+    private void validateAdd(int index) {
         if (index < 0 || index > size + 1) {
             try {
-                throw new Exception("My IndexOfBound(Outside array) Exception" + " Index: " + index + " Size: " + size);
+                throw new Exception("My IndexOfBound Exception" + " Index: " + index + " Size: " + size);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void validateAdd(int index) {
+    private void validate(int index) {
         if (index < 0 || index > size - 1) {
             try {
-                throw new Exception("Me OutOfBound Exception" + " Index: " + index + " Size: " + size);
+                throw new Exception("Me OutOfBound(Outside array) Exception" + " Index: " + index + " Size: " + size);
             } catch (Exception e) {
                 e.printStackTrace();
             }
