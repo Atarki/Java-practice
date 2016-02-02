@@ -58,8 +58,12 @@ public class ArrayList<E> {
 //        list.add(15, 12);
         System.out.println(list.toString());
 
-        list.clear();
-        System.out.println("List is empty:" + list.isEmpty());
+        list.add(177, list.size);
+        list.add(333);
+        list.add(444);
+        System.out.println(list.toString());
+//        list.clear();
+//        System.out.println("List is empty:" + list.isEmpty());
     }
 
     private int size = 0;
@@ -70,9 +74,13 @@ public class ArrayList<E> {
     }
 
     public String toString() {
-        String string = "";
+        String string = "[";
         for (int i = 0; i < size; i++) {
-            if (array[i] != null) string += array[i] + ", ";
+            if (array[i] == array[size - 1]) {
+                string += array[size - 1] + "]";
+            } else {
+                string += array[i] + ", ";
+            }
         }
         return string;
     }
@@ -81,23 +89,8 @@ public class ArrayList<E> {
         return size;
     }
 
-    public void add(Object object) {
-        if (size == array.length) {
-            Object[] array2 = new Object[(array.length) * 2];
-            System.arraycopy(array, 0, array2, 0, size);
-            array = array2;
-        }
-        for (int i = 0; i < size + 1; i++) {
-            if (array[i] == null) {
-                array[i] = object;
-                size++;
-                return;
-            } else {
-                array[size] = object;
-                size++;
-                return;
-            }
-        }
+    public void add(Object object) throws Exception {
+        add(object, size);
     }
 
     public void add(Object object, int index) throws Exception {
@@ -175,7 +168,7 @@ public class ArrayList<E> {
     }
 
     private void validate(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index > size + 1) {
             try {
                 throw new Exception("My IndexOfBound(Outside array) Exception" + " Index: " + index + " Size: " + size);
             } catch (Exception e) {
