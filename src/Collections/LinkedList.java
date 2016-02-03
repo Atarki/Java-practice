@@ -15,7 +15,6 @@ public class LinkedList<E> implements List<E> {
         for (int i = 0; i < list.size; i++) {
             System.out.println(list.get(i));
         }
-//        System.out.println(list);
         System.out.println(list.toString());
     }
 //    public LinkedList(Entry<E> entry) {
@@ -111,12 +110,9 @@ public class LinkedList<E> implements List<E> {
         Entry<E> entry = first;
         String toString = "[";
         for (int i = 0; i < size; i++) {
-            if (entry.getItem() != null) {
-                toString += entry.getItem() + ",";
-                entry = entry.getNext();
-            }
+            toString += entry.getItem() + ",";
+            entry = entry.getNext();
         }
-        toString += "]";
-        return toString;
+        return toString += "]";
     }
 }
