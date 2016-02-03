@@ -1,3 +1,5 @@
+package Collections;
+
 public class ArrayList<E> {
     public static void main(String[] args) throws Exception {
         ArrayList list = new ArrayList();
