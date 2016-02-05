@@ -1,6 +1,6 @@
 package Collections;
 
-public class ArrayList<E> {
+public class ArrayList<E> implements List {
     public static void main(String[] args) throws Exception {
         ArrayList list = new ArrayList();
         list.add(1);
@@ -75,6 +75,7 @@ public class ArrayList<E> {
         array = new Object[5];
     }
 
+    @Override
     public String toString() {
         String string = "[";
         for (int i = 0; i < size; i++) {
@@ -107,6 +108,7 @@ public class ArrayList<E> {
         size++;
     }
 
+    @Override
     public void remove(Object object) {
         for (int i = 0; i < size; i++) {
             if (object.equals(array[i])) {
@@ -116,26 +118,36 @@ public class ArrayList<E> {
         }
     }
 
+    @Override
     public void remove(int index) throws Exception {
         validate(index);
         System.arraycopy(array, index + 1, array, index, (size - index) - 1);
         size--;
     }
 
+    @Override
+    public Object get(Object o) {
+        return null;
+    }
+
+    @Override
     public Object get(int index) throws Exception {
         validate(index);
         return array[index];
     }
 
+    @Override
     public void set(Object object, int index) throws Exception {
         validate(index);
         array[index] = object;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public int indexOf(Object object) {
         for (int i = 0; i < size; i++) {
             if (object.equals(array[i]))
@@ -144,6 +156,7 @@ public class ArrayList<E> {
         return -1;
     }
 
+    @Override
     public int lastIndexOf(Object object) {
         for (int i = size - 1; i > 0; i--) {
             if (object.equals(array[i])) {
@@ -153,6 +166,7 @@ public class ArrayList<E> {
         return -1;
     }
 
+    @Override
     public void clear() {
         for (int i = 0; i < size; i++) {
             array[i] = null;
@@ -160,6 +174,7 @@ public class ArrayList<E> {
         size = 0;
     }
 
+    @Override
     public boolean contains(Object object) {
         for (int i = 0; i < size; i++) {
             if (object.equals(array[i])) {

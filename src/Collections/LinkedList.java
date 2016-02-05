@@ -1,7 +1,7 @@
 package Collections;
 
 public class LinkedList<E> implements List<E> {
-//    private Entry<E> entry;
+    //    private Entry<E> entry;
     private Entry<E> first;
     private Entry<E> last;
     int size = 0;
@@ -31,12 +31,30 @@ public class LinkedList<E> implements List<E> {
         System.out.println(list.get(5));
         System.out.println(list.toString());
         System.out.println("Size: " + list.size);
-        list.clear();
+//        list.clear();
+        list.add("777", 7);
+        list.add("777", 0);
+        System.out.println(list.toString());
+        list.set("888", 0);
+        System.out.println(list.toString());
+    }
+
+    private void addFirst(E e) {
+        Entry<E> newEntry = new Entry<E>(e);
+        if (size == 0) {
+            first = last = newEntry;
+        } else {
+            last.setNext(newEntry);
+            newEntry.setPrev(last);
+            last = newEntry;
+        }
+        size++;
+
     }
 
     @Override
     public void add(E e) {
-        addFirst(e);
+        add(e, size);
     }
 
     @Override
@@ -44,20 +62,46 @@ public class LinkedList<E> implements List<E> {
         validate(index);
         Entry<E> newEntry = new Entry<E>(e);
 
-//        if (index == size) {
-//            addFirst(e);
-//        }
-
-        Entry entry = first;
-        for (int i = 0; i < index - 1; i++) {
-            entry = entry.getNext();
+        //in range, example list[10], 1 to 9
+        if (index > 0 | index < size) {
+            Entry entry = first;
+            for (int i = 0; i < index - 1; i++) {
+                entry = entry.getNext();
+            }
+            last.setNext(newEntry);
+            newEntry.setPrev(last);
+            last = newEntry;
+            size++;
+            return;
         }
 
-        last.setNext(newEntry);
-        newEntry.setPrev(last);
-        last = newEntry;
+        //if last element
+        if (index == size & index != 0) {
+            Entry entry = last;
+            entry.setNext(newEntry);
+            newEntry.setPrev(entry);
+            newEntry = last;
+            size++;
+            return;
+        }
 
-        size++;
+        //if list is empty or index #0
+        if (size == 0) {
+            if (first != null) {
+                newEntry.setNext(first);
+                first.setPrev(newEntry);
+                newEntry = first;
+                size++;
+            } else {
+                first = last = newEntry;
+                size++;
+            }
+        } else {
+            last.setNext(newEntry);
+            newEntry.setPrev(last);
+            last = newEntry;
+            size++;
+        }
     }
 
     @Override
@@ -117,46 +161,11 @@ public class LinkedList<E> implements List<E> {
         return entry.getItem();
     }
 
-    @Override
-    public void validate(int index) {
+
+    private void validate(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("There is no such index. Index is outside of the list.");
         }
-    }
-
-
-    public void addFirst(E e) {
-        Entry<E> newEntry = new Entry<E>(e);
-        if (size == 0) {
-            first = last = newEntry;
-        } else {
-            last.setNext(newEntry);
-            newEntry.setPrev(last);
-            last = newEntry;
-        }
-        size++;
-
-    }
-
-    public void addLast(E e) {
-        Entry<E> newEntry = new Entry<E>(e);
-        if (size == 0) {
-            first = last = newEntry;
-        } else {
-            last.setNext(newEntry);
-            newEntry.setPrev(last);
-        }
-        size++;
-    }
-
-    public void removeFirst() {
-        size--;
-    }
-
-
-    public void removeLast() {
-
-        size--;
     }
 
     public Entry<E> getFirst() {
@@ -167,6 +176,7 @@ public class LinkedList<E> implements List<E> {
         return last;
     }
 
+    @Override
     public void clear() {
         Entry<E> entry = first;
         for (int i = 0; i < size; i++) {
@@ -176,6 +186,14 @@ public class LinkedList<E> implements List<E> {
         size = 0;
     }
 
+    @Override
+    public void set(E e, int index) {
+        Entry<E> entry = first;
+        for (int i = 0; i < index - 1; i++) {
+            entry = entry.getNext();
+        }
+        entry.setItem(e);
+    }
 
     @Override
     public String toString() {
@@ -184,7 +202,31 @@ public class LinkedList<E> implements List<E> {
         for (int i = 0; i < size; i++) {
             toString += entry.getItem() + ",";
             entry = entry.getNext();
+            if (entry.equals(last)) {
+                toString += entry.getItem();
+                break;
+            }
         }
         return toString += "]";
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public int indexOf(Object object) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object object) {
+        return 0;
+    }
+
+    @Override
+    public boolean contains(Object object) {
+        return false;
     }
 }
