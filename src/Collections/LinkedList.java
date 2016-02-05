@@ -13,14 +13,16 @@ public class LinkedList<E> implements List<E> {
         list.add(77);
         list.add(88);
         list.add(34);
-        list.add(52);
+        list.add("52");
         list.add(32);
         list.add(99);
-        list.add(45);
+        list.add("45");
+        System.out.println("Size 1: " + list.size);
         System.out.println(list.toString());
-        System.out.println("Size: " + list.size);
         list.remove("33");
-        list.remove("45");
+        System.out.println(list.toString());
+        list.remove("52");
+        System.out.println(list.toString());
         list.remove(2);
         System.out.println(list.toString());
         System.out.println("Size: " + list.size);
@@ -28,7 +30,17 @@ public class LinkedList<E> implements List<E> {
         System.out.println(list.toString());
         System.out.println("Size: " + list.size);
         list.add("777", 7);
+        System.out.println(list.toString());
         list.add("777", 0);
+        System.out.println(list.toString());
+        System.out.println("Size per 358: " + list.size);
+        list.add(358, 0);
+        System.out.println(list.toString());
+        System.out.println("Size per 222: " + list.size);
+        list.add(222, 0);
+        System.out.println(list.toString());
+        System.out.println("Size per 333: " + list.size);
+        list.add(333, 11);
         System.out.println(list.toString());
         list.set("888", 0);
         System.out.println(list.toString());
@@ -37,19 +49,6 @@ public class LinkedList<E> implements List<E> {
         System.out.println(list.isEmpty());
         list.clear();
         System.out.println(list.isEmpty());
-    }
-
-    private void addFirst(E e) {
-        Entry<E> newEntry = new Entry<E>(e);
-        if (size == 0) {
-            first = last = newEntry;
-        } else {
-            last.setNext(newEntry);
-            newEntry.setPrev(last);
-            last = newEntry;
-        }
-        size++;
-
     }
 
     @Override
@@ -62,8 +61,9 @@ public class LinkedList<E> implements List<E> {
         validate(index);
         Entry<E> newEntry = new Entry<E>(e);
 
+        //Direction of Entry movement first----->>>>>>> last (next)
         //in range, example list[10], 1 to 9
-        if (index > 0 | index < size) {
+        if (index > 0) {
             Entry entry = first;
             for (int i = 0; i < index - 1; i++) {
                 entry = entry.getNext();
@@ -76,7 +76,7 @@ public class LinkedList<E> implements List<E> {
         }
 
         //if last element
-        if (index == size & index != 0) {
+        if (index == size && index != 0) {
             Entry entry = last;
             entry.setNext(newEntry);
             newEntry.setPrev(entry);
@@ -85,21 +85,21 @@ public class LinkedList<E> implements List<E> {
             return;
         }
 
+        //if index #0
+        if (index == 0 && first != null) {
+            newEntry.setPrev(null);
+            newEntry.setNext(first);
+            first.setPrev(newEntry);
+            first = newEntry;
+            size++;
+            return;
+        }
+
         //if list is empty or index #0
         if (size == 0) {
-            if (first != null) {
-                newEntry.setNext(first);
-                first.setPrev(newEntry);
-                newEntry = first;
-                size++;
-            } else {
-                first = last = newEntry;
-                size++;
-            }
-        } else {
-            last.setNext(newEntry);
-            newEntry.setPrev(last);
-            last = newEntry;
+            first = last = newEntry;
+            newEntry.setNext(newEntry);
+            newEntry.setPrev(newEntry);
             size++;
         }
     }
@@ -114,12 +114,12 @@ public class LinkedList<E> implements List<E> {
                 entry.setNext(null);
                 entry.setPrev(null);
                 entry.setItem(null);
-                break;
+                size--;
+                return;
             } else {
                 entry = entry.getNext();
             }
         }
-        size--;
     }
 
     @Override
