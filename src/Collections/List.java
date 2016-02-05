@@ -19,9 +19,9 @@ public interface List<E> {
 
     boolean isEmpty();
 
-    int indexOf(Object object);
+    int indexOf(E e);
 
-    int lastIndexOf(Object object);
+    int lastIndexOf(E e);
 
-    boolean contains(Object object);
+    boolean contains(E e);
 }

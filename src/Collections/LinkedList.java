@@ -1,7 +1,6 @@
 package Collections;
 
 public class LinkedList<E> implements List<E> {
-    //    private Entry<E> entry;
     private Entry<E> first;
     private Entry<E> last;
     int size = 0;
@@ -18,9 +17,6 @@ public class LinkedList<E> implements List<E> {
         list.add(32);
         list.add(99);
         list.add(45);
-//        for (int i = 0; i < list.size; i++) {
-//            System.out.println(list.get(i));
-//        }
         System.out.println(list.toString());
         System.out.println("Size: " + list.size);
         list.remove("33");
@@ -31,12 +27,16 @@ public class LinkedList<E> implements List<E> {
         System.out.println(list.get(5));
         System.out.println(list.toString());
         System.out.println("Size: " + list.size);
-//        list.clear();
         list.add("777", 7);
         list.add("777", 0);
         System.out.println(list.toString());
         list.set("888", 0);
         System.out.println(list.toString());
+        System.out.println(list.indexOf("777"));
+        System.out.println(list.contains(32));
+        System.out.println(list.isEmpty());
+        list.clear();
+        System.out.println(list.isEmpty());
     }
 
     private void addFirst(E e) {
@@ -216,17 +216,33 @@ public class LinkedList<E> implements List<E> {
     }
 
     @Override
-    public int indexOf(Object object) {
-        return 0;
+    public int indexOf(E e) {
+        int index = 0;
+        Entry<E> entry = first;
+        for (int i = 0; i < size; i++) {
+            if (entry.getItem().equals(e)) {
+                return index;
+            }
+            entry = entry.getNext();
+            index++;
+        }
+        return -1;
     }
 
     @Override
-    public int lastIndexOf(Object object) {
-        return 0;
+    public int lastIndexOf(E e) {
+        return size;
     }
 
     @Override
-    public boolean contains(Object object) {
+    public boolean contains(E e) {
+        Entry<E> entry = first;
+        for (int i = 0; i < size; i++) {
+            if (entry.getItem().equals(e)) {
+                return true;
+            }
+            entry = entry.getNext();
+        }
         return false;
     }
 }
